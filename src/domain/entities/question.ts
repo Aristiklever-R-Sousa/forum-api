@@ -14,5 +14,9 @@ interface QuestionInterface {
 }
 
 export class Question extends Entity<QuestionInterface> {
+    static create(props: QuestionInterface, id?: UniqueEntityId) {
+        const question = new Question(props, id)
 
+        return question
+    }
 }
