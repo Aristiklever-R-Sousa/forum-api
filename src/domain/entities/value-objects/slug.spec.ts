@@ -1,8 +1,7 @@
-import { Slug } from "./slug";
+import { Slug } from './slug'
 
 test('it should be able to create a new slug from text', () => {
-    const slug = Slug.createFromText("An example text")
+  const slug = Slug.createFromText('An example text')
 
-    expect(slug.value).toEqual('an-example-text')
-
+  expect(slug.value).toEqual('an-example-text')
 })
