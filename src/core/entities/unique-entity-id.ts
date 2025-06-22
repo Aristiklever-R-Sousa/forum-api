@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto"
-import { Slug } from "../../domain/entities/value-objects/slug"
+import { Slug } from "@/domain/entities/value-objects/slug"
 
 export class UniqueEntityId {
 

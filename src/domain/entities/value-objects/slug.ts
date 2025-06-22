@@ -1,5 +1,5 @@
 export class Slug {
-    private value: string
+    public value: string
 
     constructor(value: string) {
         this.value = value
