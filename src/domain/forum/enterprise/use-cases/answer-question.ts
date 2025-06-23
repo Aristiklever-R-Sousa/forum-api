@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import { Answer } from '@/domain/entities/answer'
-import { AnswersRepository } from '@/domain/repositories/answers-repository'
+import { Answer } from '@/domain/forum/application/entities/answer'
+import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
 
 interface AnswerQuestionUseCaseRequest {
   instructorId: string
@@ -9,7 +10,7 @@ interface AnswerQuestionUseCaseRequest {
 }
 
 export class AnswerQuestionUseCase {
-  constructor(private answersRepository: AnswersRepository) {}
+  constructor(private answersRepository: AnswersRepository) { }
 
   async execute({
     instructorId,
