@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { QuestionsRepository } from '../repositories/questions-respository'
+import { QuestionsRepository } from '../repositories/questions-repository'
 
 interface DeleteQuestionUseCaseRequest {
     questionId: string,

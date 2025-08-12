@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Question } from '../../enterprise/entities/question'
-import { QuestionsRepository } from '../repositories/questions-respository'
+import { QuestionsRepository } from '../repositories/questions-repository'
 
 interface GetQuestionBySlugUseCaseRequest {
     slug: string
