@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { Question } from '@/domain/forum/enterprise/entities/question'
 
