@@ -14,21 +14,13 @@ export class InMemoryAnswerCommentsRepository implements AnswerCommentsRepositor
         return answerComment
     }
 
-    // async findBySlug(slug: string): Promise<Answer | null> {
-    //     const answer = this.items.find((item) => item.slug.value === slug)
+    async findManyByAnswerId(questionId: string, { page }: PaginationParams): Promise<AnswerComment[]> {
+        const answerComments = this.items
+            .filter(item => item.answerId.toString() === questionId)
+            .slice((page - 1) * 20, page * 20)
 
-    //     if (answer) return answer
-
-    //     return null
-    // }
-
-    // async findManyRecent({ page }: PaginationParams): Promise<Answer[]> {
-    //     const answers = this.items
-    //         .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-    //         .slice((page - 1) * 20, page * 20)
-
-    //     return answers
-    // }
+        return answerComments
+    }
 
     async create(answerComment: AnswerComment): Promise<void> {
         this.items.push(answerComment)
