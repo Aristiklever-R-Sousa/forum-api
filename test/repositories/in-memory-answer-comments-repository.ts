@@ -6,13 +6,13 @@ import { AnswerComment } from '@/domain/forum/enterprise/entities/answer-comment
 export class InMemoryAnswerCommentsRepository implements AnswerCommentsRepository {
     public items: AnswerComment[] = []
 
-    // async findById(id: string): Promise<Answer | null> {
-    //     const answer = this.items.find(item => item.id.toString() === id)
+    async findById(id: string): Promise<AnswerComment | null> {
+        const answerComment = this.items.find(item => item.id.toString() === id)
 
-    //     if (!answer) return null
+        if (!answerComment) return null
 
-    //     return answer
-    // }
+        return answerComment
+    }
 
     // async findBySlug(slug: string): Promise<Answer | null> {
     //     const answer = this.items.find((item) => item.slug.value === slug)
