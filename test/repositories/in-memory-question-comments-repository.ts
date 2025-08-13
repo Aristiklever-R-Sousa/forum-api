@@ -14,21 +14,13 @@ export class InMemoryQuestionCommentsRepository implements QuestionCommentsRepos
         return questionComment
     }
 
-    // async findBySlug(slug: string): Promise<Question | null> {
-    //     const question = this.items.find((item) => item.slug.value === slug)
+    async findManyByQuestionId(questionId: string, { page }: PaginationParams): Promise<QuestionComment[]> {
+        const questionComments = this.items
+            .filter(item => item.questionId.toString() === questionId)
+            .slice((page - 1) * 20, page * 20)
 
-    //     if (question) return question
-
-    //     return null
-    // }
-
-    // async findManyRecent({ page }: PaginationParams): Promise<Question[]> {
-    //     const questions = this.items
-    //         .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-    //         .slice((page - 1) * 20, page * 20)
-
-    //     return questions
-    // }
+        return questionComments
+    }
 
     async create(questionComment: QuestionComment): Promise<void> {
         this.items.push(questionComment)
