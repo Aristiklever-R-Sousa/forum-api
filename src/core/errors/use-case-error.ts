@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export interface UseCaseError {
-    message: string
+  message: string
 }

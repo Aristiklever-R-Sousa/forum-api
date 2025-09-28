@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
 import { GetQuestionBySlugUseCase } from './get-question-by-slug'
 import { makeQuestion } from 'test/factories/make-question'
@@ -8,26 +7,25 @@ let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: GetQuestionBySlugUseCase
 
 describe('Get Question By Slug', () => {
-    beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository
-        sut = new GetQuestionBySlugUseCase(inMemoryQuestionsRepository)
+  beforeEach(() => {
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
+    sut = new GetQuestionBySlugUseCase(inMemoryQuestionsRepository)
+  })
+
+  it('should to be able to get a question by slug', async () => {
+    const newQuestion = makeQuestion({
+      slug: Slug.create('example-question'),
     })
 
-    it('should to be able to get a question by slug', async () => {
-        const newQuestion = makeQuestion({
-            slug: Slug.create('example-question')
-        })
+    inMemoryQuestionsRepository.create(newQuestion)
 
-        inMemoryQuestionsRepository.create(newQuestion)
-
-        const result = await sut.execute({
-            slug: 'example-question'
-        })
-
-        expect(result.isRight()).toBeTruthy()
-        expect(result.value.question.title).toEqual(newQuestion.title)
-        // if (result.isRight()) {
-        // }
+    const result = await sut.execute({
+      slug: 'example-question',
     })
+
+    expect(result.isRight()).toBeTruthy()
+    expect(result.value.question.title).toEqual(newQuestion.title)
+    // if (result.isRight()) {
+    // }
+  })
 })
-
