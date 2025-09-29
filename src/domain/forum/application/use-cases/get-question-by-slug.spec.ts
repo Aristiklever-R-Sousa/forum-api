@@ -24,8 +24,8 @@ describe('Get Question By Slug', () => {
     })
 
     expect(result.isRight()).toBeTruthy()
-    expect(result.value.question.title).toEqual(newQuestion.title)
-    // if (result.isRight()) {
-    // }
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({ title: newQuestion.title }),
+    })
   })
 })
