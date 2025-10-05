@@ -1,13 +1,19 @@
-import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
-import { AnswerQuestionUseCase } from './answer-question'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
+import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
+import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: AnswerQuestionUseCase
 
-describe('Answer a Question', () => {
+describe('Create Answer', () => {
   beforeEach(() => {
-    inMemoryAnswersRepository = new InMemoryAnswersRepository()
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository()
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository,
+    )
     sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
   })
 
@@ -15,7 +21,7 @@ describe('Answer a Question', () => {
     const result = await sut.execute({
       questionId: '1',
       instructorId: '1',
-      content: 'ABC',
+      content: 'Conteúdo da resposta',
       attachmentsIds: ['1', '2'],
     })
 
